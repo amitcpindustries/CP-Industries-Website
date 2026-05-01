@@ -1,6 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { MapPin, Phone, Mail, Linkedin, Twitter, Instagram, ArrowUpRight, Facebook, MessageCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, Twitter, Instagram, ArrowUpRight, Facebook, MessageCircle } from 'lucide-react'
 
 // ── Footer link groups ─────────────────────────────────────────────
 const QUICK_LINKS = [

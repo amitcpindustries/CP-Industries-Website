@@ -211,7 +211,7 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {/* Box 1 (Farmers - Large) */}
             <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, delay: 0.1 }} variants={fadeInUp}
+              initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.1 }} variants={fadeInUp}
               className="md:col-span-2 bg-[#1A1A1A] p-10 md:p-12 rounded-3xl border border-gold/10 hover:border-gold/30 transition-colors shadow-2xl relative overflow-hidden group"
             >
               <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
@@ -230,7 +230,7 @@ export default function AboutPage() {
 
             {/* Box 2 (Verification - Tall) */}
             <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, delay: 0.2 }} variants={fadeInUp}
+              initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.2 }} variants={fadeInUp}
               className="md:col-span-1 bg-[#1A1A1A] p-10 rounded-3xl border border-gold/10 hover:border-gold/30 transition-colors shadow-2xl relative overflow-hidden group"
             >
               <div className="absolute -bottom-10 -right-10 opacity-5 group-hover:opacity-10 transition-opacity">
@@ -249,7 +249,7 @@ export default function AboutPage() {
 
             {/* Box 3 (Location - Wide) */}
             <motion.div 
-              initial="hidden" whileInView="visible" viewport={{ once: true, delay: 0.3 }} variants={fadeInUp}
+              initial="hidden" whileInView="visible" viewport={{ once: true }} transition={{ delay: 0.3 }} variants={fadeInUp}
               className="md:col-span-3 bg-gradient-to-r from-[#141414] to-[#1A1A1A] p-10 md:p-12 rounded-3xl border border-gold/10 hover:border-gold/30 transition-colors shadow-2xl flex flex-col md:flex-row items-center gap-8 group"
             >
               <div className="w-20 h-20 flex-shrink-0 rounded-full bg-gold/10 flex items-center justify-center group-hover:scale-110 transition-transform">
