@@ -45,7 +45,7 @@ type FormState = {
   message: string
 }
 
-type SubmitStatus = 'idle' | 'sent'
+type SubmitStatus = 'idle' | 'loading' | 'sent' | 'error'
 
 export default function ContactPage() {
   const [form, setForm] = useState<FormState>({
@@ -56,6 +56,7 @@ export default function ContactPage() {
     message: '',
   })
   const [status, setStatus] = useState<SubmitStatus>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
   useEffect(() => {
     if (window.location.hash === '#inquiry-form') {
@@ -72,22 +73,32 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    // ── Build a mailto: link so the browser opens the default mail client.
-    // Replace with EmailJS / SMTP SDK later.
-    const subject = encodeURIComponent(
-      `[CP Industries Inquiry] ${form.product || 'General'} — ${form.name}`
-    )
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nProduct Interest: ${form.product}\n\nMessage:\n${form.message}`
-    )
-    window.open(
-      `https://mail.google.com/mail/?view=cm&to=amitcpindustries@gmail.com&su=${subject}&body=${body}`,
-      '_blank'
-    )
-    setStatus('sent')
-    setForm({ name: '', phone: '', email: '', product: '', message: '' })
+    setStatus('loading')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('/.netlify/functions/send-contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        setErrorMsg(data.error ?? 'Something went wrong. Please try again.')
+        setStatus('error')
+        return
+      }
+
+      setStatus('sent')
+      setForm({ name: '', phone: '', email: '', product: '', message: '' })
+    } catch {
+      setErrorMsg('Network error — please check your connection and try again.')
+      setStatus('error')
+    }
   }
 
   return (
@@ -156,9 +167,9 @@ export default function ContactPage() {
               {status === 'sent' ? (
                 <div className="h-full flex flex-col items-center justify-center text-center py-20">
                   <CheckCircle size={56} className="text-gold mb-6" />
-                  <h3 className="font-heading font-bold text-white text-3xl mb-3">Message Queued!</h3>
+                  <h3 className="font-heading font-bold text-white text-3xl mb-3">Inquiry Sent!</h3>
                   <p className="font-roboto font-light text-offwhite/60 max-w-sm">
-                    Your Gmail compose window should have opened. Once you hit Send, Amit will receive your inquiry directly.
+                    Your message has been delivered directly to CP Industries. We will respond within 24 hours.
                   </p>
                   <button
                     onClick={() => setStatus('idle')}
@@ -249,13 +260,37 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <button type="submit" id="contact-submit" className="btn-gold w-full md:w-auto px-10 py-4 text-sm mt-2">
-                    <span>Send Inquiry via Gmail</span>
-                    <Send size={15} />
+                  {status === 'error' && (
+                    <div className="flex items-start gap-3 bg-red-500/10 border border-red-500/30 rounded-xl px-5 py-4">
+                      <span className="text-red-400 text-lg leading-none mt-0.5">⚠</span>
+                      <p className="font-roboto text-sm text-red-400">{errorMsg}</p>
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    id="contact-submit"
+                    disabled={status === 'loading'}
+                    className="btn-gold w-full md:w-auto px-10 py-4 text-sm mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {status === 'loading' ? (
+                      <>
+                        <svg className="animate-spin h-4 w-4 text-jet" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
+                        </svg>
+                        <span>Sending…</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Inquiry</span>
+                        <Send size={15} />
+                      </>
+                    )}
                   </button>
 
                   <p className="text-offwhite/30 text-xs font-mono mt-2">
-                    * Clicking "Send" will open Gmail with your details pre-filled. SMTP integration coming soon.
+                    * Your inquiry is sent securely.
                   </p>
                 </form>
               )}
@@ -353,10 +388,11 @@ export default function ContactPage() {
 
               {/* GST / Compliance Card */}
               <div className="bg-gradient-to-br from-gold/10 to-transparent rounded-3xl border border-gold/50 p-7 shadow-xl">
-                <p className="font-mono text-gold text-xs tracking-widest uppercase mb-2">GST Registration</p>
-                <p className="font-heading font-bold text-white text-base tracking-wider">21GBUPP5385Q1ZH</p>
+                <p className="font-mono text-gold text-xs tracking-widest uppercase mb-2">Government Registration</p>
+                <p className="font-heading font-bold text-white text-base tracking-wider mb-1">GST: 21GBUPP5385Q1ZH</p>
+                <p className="font-heading font-bold text-white text-base tracking-wider">IEC: GBUPP5385Q</p>
                 <p className="font-roboto font-light text-offwhite/40 text-xs mt-2">
-                  Government-verified ISI-certified manufacturer. All invoices carry valid GST.
+                  Government-verified manufacturer. All invoices carry valid GST.
                 </p>
               </div>
             </motion.div>

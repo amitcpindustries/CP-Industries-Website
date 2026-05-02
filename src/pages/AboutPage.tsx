@@ -242,7 +242,7 @@ export default function AboutPage() {
                 </div>
                 <h3 className="font-heading font-bold text-white text-3xl mb-4">Government Verified.</h3>
                 <p className="font-roboto font-light text-offwhite/60 text-base leading-relaxed mt-auto">
-                  Registered under GST (21GBUPP5385Q1ZH), we maintain the highest standards of legal and industrial compliance.
+                  Registered under GST (21GBUPP5385Q1ZH) and IEC (GBUPP5385Q), we maintain the highest standards of legal and global compliance.
                 </p>
               </div>
             </motion.div>
@@ -256,9 +256,9 @@ export default function AboutPage() {
                 <MapPin size={36} className="text-gold" />
               </div>
               <div>
-                <h3 className="font-heading font-bold text-white text-3xl mb-2 text-center md:text-left">Proudly Local.</h3>
+                <h3 className="font-heading font-bold text-white text-3xl mb-2 text-center md:text-left">For the India and the World.</h3>
                 <p className="font-roboto font-light text-offwhite/60 text-xl leading-relaxed text-center md:text-left">
-                  Operating from Athamallik, Angul, providing jobs and dignity to our villagers.
+                  Operating from Athamallik, Angul, providing jobs and dignity to our villagers while expanding our reach globally.
                 </p>
               </div>
             </motion.div>
