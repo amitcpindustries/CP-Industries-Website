@@ -161,7 +161,7 @@ export default function HomePage() {
       <section
         id="hero"
         aria-label="Hero slideshow"
-        className="relative w-full h-[85vh] min-h-[600px] overflow-hidden"
+        className="relative w-full h-screen overflow-hidden"
       >
         <Swiper
           modules={[Autoplay, EffectFade]}
