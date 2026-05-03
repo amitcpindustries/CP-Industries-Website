@@ -86,7 +86,7 @@ const SECTORS = [
   },
   {
     title: 'Forestry',
-    impact: 'Government-verified protection for vital forest and wildlife reserves using high-security concertina razor wire barriers.',
+    impact: 'Government-verified protection for vital forest and wildlife reserves using high-security chain link fence barriers.',
     image: '/serve/forestry.jpg'
   },
   {
@@ -108,6 +108,16 @@ const SECTORS = [
     title: 'Industrial',
     impact: 'Bulk manufacturing and supply of versatile wire products to support large-scale warehouse, factory, and construction site security.',
     image: '/serve/industrial.jpg'
+  },
+  {
+    title: 'Railways',
+    impact: 'Ensuring safe and uninterrupted transit with high-security welded mesh fencing designed to protect critical railway infrastructure and tracks.',
+    image: '/serve/railways.jpg'
+  },
+  {
+    title: 'Sports',
+    impact: 'Providing premium, durable, and aesthetic chain link solutions for stadiums, courts, and playgrounds, keeping athletes and spectators secure.',
+    image: '/serve/sports.jpg'
   }
 ]
 

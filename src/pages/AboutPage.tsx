@@ -79,7 +79,7 @@ export default function AboutPage() {
             >
               <div className="prose prose-invert prose-lg max-w-none font-roboto font-light text-offwhite/70 leading-relaxed space-y-6">
                 <p>
-                  In September 2021, at the age of 21, Amit Pradhan looked at the fertile lands of Athamallik and saw more than just fields—he saw an opportunity to protect them. What started as a vision to provide high-quality fencing has grown into a mission of rural empowerment.
+                  In September 2021, at the age of 21, Amit Pradhan looked at the fertile land of India and saw more than just fields—he saw an opportunity to protect them. What started as a vision to provide high-quality fencing has grown into a mission of rural empowerment.
                 </p>
                 <p>
                   Today, CP Industries stands as a beacon of young entrepreneurship, proving that world-class manufacturing can thrive in the heart of a village.
