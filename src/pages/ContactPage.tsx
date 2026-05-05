@@ -346,10 +346,10 @@ export default function ContactPage() {
                     <div>
                       <p className="font-mono text-gold/60 text-xs tracking-widest uppercase mb-1">Email</p>
                       <a
-                        href="mailto:amitcpindustries@gmail.com"
+                        href="mailto:cpindustriessells@gmail.com"
                         className="block font-roboto text-white/80 hover:text-gold transition-colors text-sm no-underline"
                       >
-                        amitcpindustries@gmail.com
+                        cpindustriessells@gmail.com
                       </a>
                       <a
                         href="mailto:26cpindustries@gmail.com"
